@@ -31,7 +31,7 @@ class _MapFullState extends State<MapFull> {
   final LayerHitNotifier hitNotifier = ValueNotifier(null);
   MapController ctrl = MapController();
   final box = Hive.box<Project>("projects");
-
+  latLng.LatLng userPos = latLng.LatLng(1, 1);
   Future<bool> _handleLocationPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -62,10 +62,13 @@ class _MapFullState extends State<MapFull> {
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
-      setState(() =>
-          ctrl.move(latLng.LatLng(position.latitude, position.longitude), 5));
-    }).catchError((e) {
-      debugPrint(e);
+      setState((){
+        print(position);
+          ctrl.move(latLng.LatLng(position.latitude, position.longitude), 14);
+          userPos = latLng.LatLng(position.latitude, position.longitude);
+    });
+    }).catchError((FlutterError e) {
+      debugPrint(e.message);
     });
   }
 
@@ -188,7 +191,7 @@ class _MapFullState extends State<MapFull> {
           return Marker(
               point: elem.marker.point,
               child: Center(child: Text(elem.displayOrder.toString())));
-        }).toList())
+        }).toList()),
       ],
     ));
   }

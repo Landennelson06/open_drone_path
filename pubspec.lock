@@ -382,7 +382,7 @@ packages:
     source: hosted
     version: "4.1.1"
   geolocator_windows:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: geolocator_windows
       sha256: "53da08937d07c24b0d9952eb57a3b474e29aae2abf9dd717f7e1230995f13f0e"
