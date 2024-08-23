@@ -1,0 +1,1 @@
+enum MapButtons{pan,circle,polyline,delete}
