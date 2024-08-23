@@ -90,8 +90,11 @@ class _ProjectGenerateState extends State<ProjectGenerate> {
                   final encoded = zipEncoder.encode(archive);
                   if(encoded == null) return;
                   final zipFile = await File(exportDir.absolute.path + "\\" + widget.project.name + ".kmz").writeAsBytes(encoded);
-                },
-                icon: Icon(Icons.chevron_right)),
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Generated!"),
+                  ));
+                  },
+                icon: Icon(Icons.download)),
           );
         });
   }
